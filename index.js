@@ -1,8 +1,13 @@
-const fp = require("fastify-plugin");
+const { port } = require("./config/server.config");
 
-async function customRoutes(fastify, options) {
-const customControllers=require("./controller/index.controller")
+const fastify = require("fastify")({ logger: true });
 
-  fastify.get("/ping",customControllers.pingController );
-}
-module.exports = fp(customRoutes);
+fastify.register(require("./app"));
+
+fastify.listen({ port: port }, (err) => {
+  if (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+  console.log("server is running on port" + " " + port);
+});
