@@ -4,8 +4,11 @@ class TodoServices{
         this.todoRepository=todoRepository
     }
     async getAll(){
-        console.log("hi",await this.todoRepository.getAll())
         return await this.todoRepository.getAll()
+    }
+
+    async createTodo(todo){
+        return await this.todoRepository.createTodo(todo)
     }
     getOne(id){
         return this.todoRepository.getOne(id)

@@ -3,8 +3,13 @@ class TodoRepository {
   constructor(db) {
     this.db = db;
   }
+  async createTodo(todo){
+  const {todos}=this.db
+ await todos.push(todo)
+  return todo
+
+  }
   async getAll() {
-    console.log("request recahed", this.db);
     return await this.db;
   }
   getOne(id) {}
@@ -13,7 +18,6 @@ class TodoRepository {
 }
 async function todoRepository(fastify, options) {
   const { db } = fastify;
-  console.log(db);
   const repo = new TodoRepository(db);
   fastify.decorate("todoRepository", repo);
 }
