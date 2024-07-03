@@ -1,6 +1,12 @@
-async function todoController(req, res) {
+async function getTodoController(req, res) {
   const { todoService } = this;
   const resData=await todoService.getAll();
   res.send(resData);
 }
-module.exports = todoController;
+
+async function postTodoController(req, res) {
+  const { todoService } = this;
+  const resData=await todoService.getAll();
+  res.send(resData);
+}
+module.exports = {getTodoController,postTodoController};
